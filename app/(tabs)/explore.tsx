@@ -1,16 +1,19 @@
+// ExploreScreen - Tela de exploração com exemplos e documentação
+// Demonstra Collapsible, links externos, imagens e suporte a tema/tipos de fonte
 import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
+import { ExternalLink } from '@/components/external-link'; // Link que abre no navegador
+import ParallaxScrollView from '@/components/parallax-scroll-view'; // Cabeçalho com efeito parallax
+import { ThemedText } from '@/components/themed-text'; // Texto com tema
+import { ThemedView } from '@/components/themed-view'; // View com tema
+import { Collapsible } from '@/components/ui/collapsible'; // Seções expansíveis
+import { IconSymbol } from '@/components/ui/icon-symbol'; // Ícones simbólicos
+import { Fonts } from '@/constants/theme'; // Constantes de fontes e tema
 
 export default function TabTwoScreen() {
   return (
+    // Container principal com cabeçalho icônico e conteúdo em colapsáveis
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
@@ -21,6 +24,7 @@ export default function TabTwoScreen() {
           style={styles.headerImage}
         />
       }>
+      {/* Título da tela com fonte arredondada */}
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
@@ -30,7 +34,9 @@ export default function TabTwoScreen() {
           Explore
         </ThemedText>
       </ThemedView>
+      {/* Texto introdutório */}
       <ThemedText>This app includes example code to help you get started.</ThemedText>
+      {/* Exemplo: roteamento baseado em arquivos */}
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -45,12 +51,14 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+      {/* Exemplo: suporte às plataformas Android, iOS e Web */}
       <Collapsible title="Android, iOS, and web support">
         <ThemedText>
           You can open this project on Android, iOS, and the web. To open the web version, press{' '}
           <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
         </ThemedText>
       </Collapsible>
+      {/* Exemplo: imagens estáticas com sufixos para densidades de tela */}
       <Collapsible title="Images">
         <ThemedText>
           For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
@@ -65,6 +73,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+      {/* Exemplo: componentes com suporte a tema claro/escuro */}
       <Collapsible title="Light and dark mode components">
         <ThemedText>
           This template has light and dark mode support. The{' '}
@@ -75,6 +84,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+      {/* Exemplo: animações com react-native-reanimated */}
       <Collapsible title="Animations">
         <ThemedText>
           This template includes an example of an animated component. The{' '}
@@ -98,6 +108,7 @@ export default function TabTwoScreen() {
   );
 }
 
+// Estilos da tela Explore
 const styles = StyleSheet.create({
   headerImage: {
     color: '#808080',

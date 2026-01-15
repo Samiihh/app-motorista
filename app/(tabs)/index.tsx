@@ -1,14 +1,17 @@
+// HomeScreen - Tela inicial das abas
+// Usa ParallaxScrollView para cabeçalho com efeito e componentes "Themed" para suportar claro/escuro
 import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { HelloWave } from '@/components/hello-wave'; // Animação simples de cumprimento
+import ParallaxScrollView from '@/components/parallax-scroll-view'; // Scroll com parallax no cabeçalho
+import { ThemedText } from '@/components/themed-text'; // Texto que adapta cores ao tema
+import { ThemedView } from '@/components/themed-view'; // View que adapta cores ao tema
+import { Link } from 'expo-router'; // Navegação declarativa com pré-visualização e menu
 
 export default function HomeScreen() {
   return (
+    // Container com cabeçalho parallax e conteúdo em seções
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
@@ -17,10 +20,12 @@ export default function HomeScreen() {
           style={styles.reactLogo}
         />
       }>
+      {/* Área de título com animação de aceno */}
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
+      {/* Seção com instruções rápidas e atalhos por plataforma */}
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
@@ -36,6 +41,7 @@ export default function HomeScreen() {
           to open developer tools.
         </ThemedText>
       </ThemedView>
+      {/* Exemplo de Link com Trigger, Preview e Menu de ações */}
       <ThemedView style={styles.stepContainer}>
         <Link href="/modal">
           <Link.Trigger>
@@ -64,6 +70,7 @@ export default function HomeScreen() {
           {`Tap the Explore tab to learn more about what's included in this starter app.`}
         </ThemedText>
       </ThemedView>
+      {/* Dica para resetar o projeto e começar do zero */}
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
         <ThemedText>
@@ -78,6 +85,7 @@ export default function HomeScreen() {
   );
 }
 
+// Estilos da tela Home
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',

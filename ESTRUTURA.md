@@ -246,5 +246,3 @@ scripts/
 | `/scripts/` | Scripts Node.js | Tarefas automatizadas |
 
 ---
-
-**Última atualização**: 13 de janeiro de 2026
