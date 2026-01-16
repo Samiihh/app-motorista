@@ -2,7 +2,6 @@
 import { router } from "expo-router"; // Sistema de navegação do Expo
 import React, { useEffect } from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 /**
  * SplashScreen - Tela inicial do aplicativo
@@ -22,7 +21,7 @@ export default function SplashScreen() {
 
   return (
     // SafeAreaView garante que o conteúdo não fique sob a barra de status
-    <SafeAreaView style={styles.safe}>
+    <View style={styles.safe}>
       {/* ImageBackground permite colocar uma imagem como fundo */}
       <ImageBackground
         source={require("../assets/splash/mapa.png")} // Imagem de fundo (mapa)
@@ -41,7 +40,7 @@ export default function SplashScreen() {
           <Text style={styles.title}>App Motorista</Text>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 }
 

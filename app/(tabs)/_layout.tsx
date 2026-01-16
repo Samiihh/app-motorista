@@ -1,44 +1,127 @@
-// TabLayout - Define a navegação por abas do aplicativo (Home e Explore)
-// Este arquivo configura as abas com ícones e feedback tátil
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { HapticTab } from '@/components/haptic-tab'; // Substitui o botão padrão da tab para dar feedback tátil
-import { IconSymbol } from '@/components/ui/icon-symbol'; // Componente de ícone (SF Symbols / plataforma)
-import { Colors } from '@/constants/theme'; // Paleta de cores por tema claro/escuro
-import { useColorScheme } from '@/hooks/use-color-scheme'; // Detecta se o app está em modo claro ou escuro
-
-export default function TabLayout() {
-  // Obtém o tema atual do dispositivo ("light" ou "dark")
-  const colorScheme = useColorScheme();
-
-  // Configura a navegação por abas (Tabs) com ícones e botão com haptics
-  // Observação: dentro de <Tabs>, apenas <Tabs.Screen> são filhos válidos
-  // Renderiza as abas principais do app
+/**
+ * TabsLayout - Layout do grupo (tabs)
+ * Aqui nasce a barra inferior (bottom tabs).
+ * Cada arquivo dentro de app/(tabs) vira uma aba (ou tela dentro das abas).
+ */
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        // Cor da etiqueta/ícone da aba quando ativa, baseada no tema atual
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Oculta o cabeçalho padrão das páginas dentro das tabs
         headerShown: false,
-        // Substitui o botão da aba por um componente com feedback tátil
-        tabBarButton: HapticTab,
-      }}>
+
+        // Estilo da barra inferior
+        tabBarStyle: {
+          position: "absolute",
+          left: 16,
+          right: 16,
+          bottom: 0,
+          paddingTop: 6,
+          paddingBottom: 10,
+
+          height: 74,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+
+          backgroundColor: "#0B63CE",
+          borderTopWidth: 0,
+
+          // sombra iOS
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 8 },
+          shadowOpacity: 0.15,
+          shadowRadius: 10,
+
+          // sombra Android
+          elevation: 10,
+        },
+
+        tabBarIconStyle: { marginTop: 4 },
+
+        // Cores do ícone ativo/inativo
+        tabBarActiveTintColor: "#FFFFFF",
+        tabBarInactiveTintColor: "#D7E8FF",
+
+        // Some com o texto (fica só ícone igual seu print)
+        tabBarShowLabel: false,
+      }}
+    >
+      {/* Home/Dashboard */}
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home', // Título exibido na aba
-          // Ícone da aba: usa IconSymbol com tamanho fixo e cor fornecida pelo sistema
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name="home-outline"
+              size={focused ? 30 : 26}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      {/* Veículos */}
+      <Tabs.Screen
+        name="vehicles"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name="car-outline"
+              size={focused ? 30 : 26}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      {/* Mapas */}
+      <Tabs.Screen
+        name="maps"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name="map-outline"
+              size={focused ? 30 : 26}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      {/* Alertas */}
+      <Tabs.Screen
+        name="alerts"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name="notifications-outline"
+              size={focused ? 30 : 26}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      {/* Config */}
+      <Tabs.Screen
+        name="settings"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <Ionicons
+              name="options-outline"
+              size={focused ? 30 : 26}
+              color={color}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore', // Título exibido na aba
-          // Ícone da aba: papel avião, com cor dinâmica conforme estado
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          href: null,
         }}
       />
     </Tabs>
